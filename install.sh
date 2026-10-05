@@ -15,19 +15,19 @@ if ! command -v node >/dev/null 2>&1; then
 fi
 echo "node $(node -v)"
 
-echo "Installing server dependencies..."
-( cd "$ROOT/server" && npm install --no-fund --no-audit )
+echo "Installing dependencies and preparing setup.json..."
+LCA_CONFIG_PATH="$ROOT/setup.json" node "$ROOT/scripts/local-coding-agent.mjs" install
 
-mkdir -p "$ROOT/tools"
 chmod +x "$ROOT/scripts/start-tunnel.sh" 2>/dev/null || true
 
 cat <<'EOF'
 
 Done. Next steps:
   1. Put your OpenAI tunnel client at: tools/tunnel-client   (chmod +x it)
-  2. Run:  AGENT_WORKSPACE="/path/to/your/repo" bash scripts/start-tunnel.sh
-  3. In ChatGPT: Settings -> Connectors -> Developer mode -> add the MCP connector.
-  4. Verify in chat: "call workspace_info".
+  2. Edit setup.json in this project folder (workspace, keys, policies, tunnel settings).
+  3. Start the server and tunnel:    bash scripts/lca start
+  4. In ChatGPT: Settings -> Connectors -> Developer mode -> add the MCP connector.
+  5. Verify in chat: "call workspace_info".
 
 Dashboard (when running): http://127.0.0.1:8790/ui
 EOF

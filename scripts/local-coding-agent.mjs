@@ -53,15 +53,24 @@ const DEFAULTS = {
   noTunnel: false
 };
 
+const SETUP_TEMPLATE = {
+  _comments: {
+    workspace: "Bắt buộc: đường dẫn tuyệt đối đến thư mục agent được phép đọc/ghi. Ví dụ: C:/Users/Admin/Projects/MyApp.",
+    mode: "safe = giới hạn lệnh rủi ro bằng danh sách chặn bảo thủ; full = ít chặn lệnh hơn. Đây không phải sandbox của hệ điều hành. Nên dùng safe.",
+    policy: "strict = chỉ đọc; balanced = cần bạn duyệt một lần cho thao tác rủi ro như xóa, cài đặt, mạng hoặc sửa Git; full = không yêu cầu duyệt theo policy. Nên dùng balanced.",
+    tunnelId: "Tunnel ID do OpenAI cấp trong phần thiết lập tunnel. Ví dụ định dạng: tunnel_... .",
+    runtimeKey: "Runtime API key dùng để kết nối tunnel. File JSON này không mã hóa key; không chia sẻ hoặc commit file."
+  },
+  workspace: "",
+  mode: "safe",
+  policy: "balanced",
+  tunnelId: "",
+  organizationId: "",
+  runtimeKey: ""
+};
+
 function defaultConfigPath() {
-  const home = process.env.HOME || process.env.USERPROFILE || ".";
-  if (process.platform === "win32") {
-    return join(process.env.APPDATA || join(home, "AppData", "Roaming"), "LocalCodingAgent", "cli-config.json");
-  }
-  if (process.platform === "darwin") {
-    return join(home, "Library", "Application Support", "LocalCodingAgent", "cli-config.json");
-  }
-  return join(process.env.XDG_CONFIG_HOME || join(home, ".config"), "LocalCodingAgent", "cli-config.json");
+  return join(REPO_ROOT, "setup.json");
 }
 
 function usage() {
@@ -533,6 +542,28 @@ function stripRuntimeFields(cfg) {
 }
 
 async function installDeps(opts) {
+  if (!existsSync(CONFIG_PATH)) {
+    mkdirSync(dirname(CONFIG_PATH), { recursive: true });
+    writeFileSync(CONFIG_PATH, `${JSON.stringify(SETUP_TEMPLATE, null, 2)}\n`, "utf8");
+    console.log(`Created project setup file: ${CONFIG_PATH}`);
+  } else {
+    let config;
+    try {
+      config = JSON.parse(readFileSync(CONFIG_PATH, "utf8"));
+    } catch {
+      throw new Error(`Invalid JSON in ${CONFIG_PATH}; fix the file before installing.`);
+    }
+    if (!config || typeof config !== "object" || Array.isArray(config)) {
+      throw new Error(`Expected a JSON object in ${CONFIG_PATH}.`);
+    }
+    if (!config._comments) {
+      config._comments = SETUP_TEMPLATE._comments;
+      writeFileSync(CONFIG_PATH, `${JSON.stringify(config, null, 2)}\n`, "utf8");
+      console.log(`Added setup instructions to: ${CONFIG_PATH}`);
+    }
+  }
+  mkdirSync(join(REPO_ROOT, "tools"), { recursive: true });
+
   const npm = npmCommand(["install"]);
   const child = spawnLogged("install", npm.command, npm.args, { cwd: SERVER_DIR });
   const code = await new Promise((resolveExit) => child.on("exit", resolveExit));

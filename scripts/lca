@@ -1,3 +1,7 @@
 #!/usr/bin/env sh
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+if [ -z "${LCA_CONFIG_PATH:-}" ] && [ -f "$SCRIPT_DIR/../setup.json" ]; then
+  LCA_CONFIG_PATH="$SCRIPT_DIR/../setup.json"
+  export LCA_CONFIG_PATH
+fi
 exec node "$SCRIPT_DIR/local-coding-agent.mjs" "$@"

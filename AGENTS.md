@@ -21,24 +21,26 @@ as a coding agent on the user's machine, plus an optional **Windows tray app**
 - Windows: `pwsh -File install.ps1`  (or `powershell -ExecutionPolicy Bypass -File install.ps1`)
 - macOS/Linux: `bash install.sh`
 
-This runs `npm install` in `server/` and creates `tools/`. It does NOT need sudo.
+This installs dependencies in `server/`, creates `tools/`, and initializes the
+ignored project-root `setup.json` with inline option notes when needed. It does
+NOT need sudo.
 
 ## Run
 1. Decide the **workspace** = the folder the agent may read/write. Confirm it
    with the user.
 2. Start the server (pick one):
-   - Windows one-click flow: `install.bat` creates/updates the per-user CLI
-     configuration, then use `start-server.bat` and `stop-server.bat`. The
-     configuration is stored at `%APPDATA%\LocalCodingAgent\cli-config.json`;
-     the `.bat` start/stop launchers read settings from that file. Do not put
-     secrets in repository scripts.
-   - Script: set `AGENT_WORKSPACE` then run `scripts/start-tunnel.ps1` (Windows)
-     or `scripts/start-tunnel.sh` (macOS/Linux). It also starts the tunnel.
+   - One-click flow: run `install.bat` (Windows) or `bash install.sh`
+     (macOS/Linux), edit the ignored project-root `setup.json`, then start with
+     `start-server.bat` (Windows) or `bash scripts/lca start` (macOS/Linux).
+     The setup file contains workspace, mode, policy, tunnel, and key settings.
+     Never commit it; it can contain credentials.
+   - Foreground flow: run `scripts/start-tunnel.ps1` (Windows) or
+     `scripts/start-tunnel.sh` (macOS/Linux); both use `setup.json` too.
    - Server only (no tunnel), for a quick check:
      `cd server && AGENT_WORKSPACE=<path> AGENT_MODE=safe npm start`
 3. Connect ChatGPT: ChatGPT → Settings → Connectors → enable Developer mode →
-   add a custom MCP connector. Paste the tunnel's runtime key when the launcher
-   asks (`CONTROL_PLANE_API_KEY`).
+   add a custom MCP connector. The launcher reads the configured runtime key
+   from `setup.json` (or the configured environment variable).
 
 ## Verify (always do this)
 - Health: `curl http://127.0.0.1:8787/healthz` → expect `{"status":"ok",...}`.

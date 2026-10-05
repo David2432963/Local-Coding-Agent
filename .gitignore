@@ -7,6 +7,7 @@
 *.pem
 config.json
 permission-profiles.json
+/setup.json
 
 # ---- Proprietary binaries (do NOT redistribute) ----
 tools/

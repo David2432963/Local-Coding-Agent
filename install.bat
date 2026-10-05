@@ -2,13 +2,13 @@
 setlocal
 cd /d "%~dp0"
 
-title Local Coding Agent - Apply Settings / Install
+title Local Coding Agent - Install
 
 echo ========================================================
-echo   Local Coding Agent - Apply Settings (install.ps1)
+echo   Local Coding Agent - Install (install.ps1)
 echo ========================================================
 echo.
-echo Dang ap dung cau hinh tu install.ps1 va khoi dong lai server...
+echo Dang chuan bi setup.json va cai dependencies...
 echo.
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0install.ps1" %*
@@ -18,7 +18,7 @@ echo.
 if not "%EXIT_CODE%"=="0" (
     echo [ERROR] Da co loi xay ra khi chay install.ps1 (Ma loi: %EXIT_CODE%).
 ) else (
-    echo [OK] Cau hinh da duoc luu va cap nhat thanh cong!
+    echo [OK] Cai dat xong. Hay sua setup.json roi chay start-server.bat.
 )
 
 echo.
