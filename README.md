@@ -8,13 +8,13 @@
 Let an AI agent read files, edit code, run checks, inspect git, and show live health metrics from a local dashboard.</p>
 
 <p>
-  <a href="https://github.com/LongNgn204/local-coding-agent/releases"><img src="https://img.shields.io/github/v/release/LongNgn204/local-coding-agent?color=2dd4bf&label=release" alt="release" /></a>
+  <a href="https://github.com/David2432963/Local-Coding-Agent/releases"><img src="https://img.shields.io/github/v/release/David2432963/Local-Coding-Agent?color=2dd4bf&label=release" alt="release" /></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-60a5fa" alt="platforms" />
   <img src="https://img.shields.io/badge/MCP-server-a78bfa" alt="mcp" />
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-blue" alt="license" /></a>
   <img src="https://img.shields.io/badge/edition-Community-2dd4bf" alt="Community Edition" />
   <img src="https://img.shields.io/badge/node-%E2%89%A518-339933?logo=node.js&logoColor=white" alt="node" />
-  <a href="https://github.com/LongNgn204/local-coding-agent/stargazers"><img src="https://img.shields.io/github/stars/LongNgn204/local-coding-agent?style=social" alt="stars" /></a>
+  <a href="https://github.com/David2432963/Local-Coding-Agent/stargazers"><img src="https://img.shields.io/github/stars/David2432963/Local-Coding-Agent?style=social" alt="stars" /></a>
 </p>
 
 <p><b>Works with</b><br/>
@@ -147,7 +147,7 @@ this prompt into Codex, Claude Code, Cursor, or another local coding agent:
 Please install Local Coding Agent on my machine.
 
 Repository:
-https://github.com/LongNgn204/local-coding-agent
+https://github.com/David2432963/Local-Coding-Agent
 
 Goal:
 Clone the repo, install it, configure a workspace, start the MCP server, and
@@ -162,7 +162,7 @@ Rules:
 - If anything fails, show the exact error and the next command to fix it.
 
 Steps:
-1. Clone https://github.com/LongNgn204/local-coding-agent if it is not already cloned.
+1. Clone https://github.com/David2432963/Local-Coding-Agent if it is not already cloned.
 2. Enter the repo directory and read AGENTS.md; follow it exactly.
 3. Check Node.js version is >= 18 (node -v).
 4. Install with:
@@ -195,7 +195,7 @@ For existing installs, use [docs/CUSTOMER_UPDATE_PROMPT.md](docs/CUSTOMER_UPDATE
 ```mermaid
 flowchart TD
   A["Paste prompt into your AI coding agent"] --> B["Agent checks Node.js >= 18"]
-  B --> C["Agent clones LongNgn204/local-coding-agent"]
+  B --> C["Agent clones David2432963/Local-Coding-Agent"]
   C --> D["Agent runs scripts/lca install"]
   D --> E["Agent runs scripts/lca setup"]
   E --> F["You provide workspace and optional tunnel details"]
@@ -209,8 +209,8 @@ flowchart TD
 Windows:
 
 ```powershell
-git clone https://github.com/LongNgn204/local-coding-agent.git
-cd local-coding-agent
+git clone https://github.com/David2432963/Local-Coding-Agent.git
+cd Local-Coding-Agent
 scripts\lca.cmd install
 scripts\lca.cmd setup
 scripts\lca.cmd start
@@ -219,8 +219,8 @@ scripts\lca.cmd start
 macOS / Linux:
 
 ```bash
-git clone https://github.com/LongNgn204/local-coding-agent.git
-cd local-coding-agent
+git clone https://github.com/David2432963/Local-Coding-Agent.git
+cd Local-Coding-Agent
 bash scripts/lca install
 bash scripts/lca setup
 bash scripts/lca start
@@ -252,11 +252,11 @@ It can start/stop the server, save tunnel settings, copy the MCP URL, open the
 dashboard, and store the Runtime API key encrypted with Windows DPAPI.
 
 Download the self-contained `.exe` from
-[Releases](https://github.com/LongNgn204/local-coding-agent/releases), or build
+[Releases](https://github.com/David2432963/Local-Coding-Agent/releases), or build
 it yourself:
 
 Direct Windows x64 download for the latest stable release:
-[LocalCodingAgentTray-5.0.0-win-x64.exe](https://github.com/LongNgn204/local-coding-agent/releases/download/v5.0.0/LocalCodingAgentTray-5.0.0-win-x64.exe).
+[LocalCodingAgentTray-5.0.0-win-x64.exe](https://github.com/David2432963/Local-Coding-Agent/releases/download/v5.0.0/LocalCodingAgentTray-5.0.0-win-x64.exe).
 
 ```powershell
 cd tray-app
@@ -439,8 +439,7 @@ dotnet build LocalCodingAgentTray.csproj -c Release
 ### License And Trademark
 
 The Local Coding Agent Community Edition code is licensed under
-[AGPL-3.0-or-later](LICENSE). Copyright © 2026 Long Nguyễn
-([@LongNgn204](https://github.com/LongNgn204)).
+[AGPL-3.0-or-later](LICENSE). Copyright © 2026 Long Nguyễn.
 
 The code license does not grant permission to present a fork, service, or
 modified binary as an official Local Coding Agent release. See
@@ -463,7 +462,7 @@ này vào Codex, Claude Code, Cursor hoặc một local coding agent khác:
 Hãy cài Local Coding Agent trên máy của tôi.
 
 Repository:
-https://github.com/LongNgn204/local-coding-agent
+https://github.com/David2432963/Local-Coding-Agent
 
 Mục tiêu:
 Clone repo, cài dependency, cấu hình workspace, khởi động MCP server và kiểm tra
@@ -478,7 +477,7 @@ Quy tắc:
 - Nếu lỗi, hãy báo đúng lỗi và lệnh tiếp theo để sửa.
 
 Các bước:
-1. Clone https://github.com/LongNgn204/local-coding-agent nếu repo chưa tồn tại.
+1. Clone https://github.com/David2432963/Local-Coding-Agent nếu repo chưa tồn tại.
 2. Đi vào thư mục repo và đọc AGENTS.md; làm theo đúng hướng dẫn.
 3. Kiểm tra Node.js version >= 18 (node -v).
 4. Cài đặt bằng:
@@ -511,7 +510,7 @@ Nếu đã cài rồi và muốn update, dùng [docs/CUSTOMER_UPDATE_PROMPT.md](
 ```mermaid
 flowchart TD
   A["Dán prompt vào AI coding agent"] --> B["Agent kiểm tra Node.js >= 18"]
-  B --> C["Agent clone LongNgn204/local-coding-agent"]
+  B --> C["Agent clone David2432963/Local-Coding-Agent"]
   C --> D["Agent chạy scripts/lca install"]
   D --> E["Agent chạy scripts/lca setup"]
   E --> F["Bạn cung cấp workspace và tunnel nếu cần"]
@@ -525,8 +524,8 @@ flowchart TD
 Windows:
 
 ```powershell
-git clone https://github.com/LongNgn204/local-coding-agent.git
-cd local-coding-agent
+git clone https://github.com/David2432963/Local-Coding-Agent.git
+cd Local-Coding-Agent
 scripts\lca.cmd install
 scripts\lca.cmd setup
 scripts\lca.cmd start
@@ -535,8 +534,8 @@ scripts\lca.cmd start
 macOS / Linux:
 
 ```bash
-git clone https://github.com/LongNgn204/local-coding-agent.git
-cd local-coding-agent
+git clone https://github.com/David2432963/Local-Coding-Agent.git
+cd Local-Coding-Agent
 bash scripts/lca install
 bash scripts/lca setup
 bash scripts/lca start
@@ -568,11 +567,11 @@ start/stop server, lưu tunnel settings, copy MCP URL, mở dashboard và lưu R
 API key bằng Windows DPAPI.
 
 Tải file `.exe` self-contained từ
-[Releases](https://github.com/LongNgn204/local-coding-agent/releases), hoặc tự
+[Releases](https://github.com/David2432963/Local-Coding-Agent/releases), hoặc tự
 build:
 
 Tải trực tiếp bản Windows x64 mới nhất:
-[LocalCodingAgentTray-5.0.0-win-x64.exe](https://github.com/LongNgn204/local-coding-agent/releases/download/v5.0.0/LocalCodingAgentTray-5.0.0-win-x64.exe).
+[LocalCodingAgentTray-5.0.0-win-x64.exe](https://github.com/David2432963/Local-Coding-Agent/releases/download/v5.0.0/LocalCodingAgentTray-5.0.0-win-x64.exe).
 
 ```powershell
 cd tray-app
@@ -753,8 +752,7 @@ dotnet build LocalCodingAgentTray.csproj -c Release
 ### Giấy Phép Và Nhãn Hiệu
 
 Mã nguồn Local Coding Agent Community Edition được phát hành theo
-[AGPL-3.0-or-later](LICENSE). Bản quyền © 2026 Long Nguyễn
-([@LongNgn204](https://github.com/LongNgn204)).
+[AGPL-3.0-or-later](LICENSE). Bản quyền © 2026 Long Nguyễn.
 
 Giấy phép code không cấp quyền giới thiệu một fork, dịch vụ hoặc binary đã sửa
 đổi như bản phát hành Local Coding Agent chính thức. Xem
