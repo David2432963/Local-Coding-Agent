@@ -27,6 +27,11 @@ This runs `npm install` in `server/` and creates `tools/`. It does NOT need sudo
 1. Decide the **workspace** = the folder the agent may read/write. Confirm it
    with the user.
 2. Start the server (pick one):
+   - Windows one-click flow: `install.bat` creates/updates the per-user CLI
+     configuration, then use `start-server.bat` and `stop-server.bat`. The
+     configuration is stored at `%APPDATA%\LocalCodingAgent\cli-config.json`;
+     the `.bat` start/stop launchers read settings from that file. Do not put
+     secrets in repository scripts.
    - Script: set `AGENT_WORKSPACE` then run `scripts/start-tunnel.ps1` (Windows)
      or `scripts/start-tunnel.sh` (macOS/Linux). It also starts the tunnel.
    - Server only (no tunnel), for a quick check:

@@ -280,6 +280,13 @@ Windows, macOS, and Linux because it does not require building a GUI app.
 The local URL `http://127.0.0.1:8787/mcp` is for your machine. ChatGPT Web must
 connect through the secure tunnel, not by pasting the local loopback URL.
 
+On Windows, `install.bat` writes the per-user settings file at
+`%APPDATA%\LocalCodingAgent\cli-config.json`. After setup, use
+`start-server.bat` and `stop-server.bat`; these launchers use the saved
+workspace, mode, policy, ports, and tunnel settings instead of separate values
+inside each batch file. This file can contain credentials, so keep it local
+and do not commit it.
+
 ### Customer Network Diagnostics
 
 If the customer says it works on mobile hotspot but fails on office/internal

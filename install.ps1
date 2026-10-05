@@ -5,15 +5,18 @@
 $ErrorActionPreference = "Stop"
 
 # ---------------------------------------------------------------------------
-# One-file launcher for Windows.
+# Windows setup and first start.
 # Fill in the variables below, then run:
 #   powershell -ExecutionPolicy Bypass -File .\install.ps1
 #
 # This script:
 #   1) installs server deps if needed
-#   2) writes the Local Coding Agent CLI config
+#   2) writes the per-user Local Coding Agent CLI config
 #   3) starts server + tunnel using the repo's official launcher
 #   4) prints status at the end
+#
+# start-server.bat reads this same per-user config; it does not define its own
+# workspace, mode, policy, port, tunnel ID, or key.
 # ---------------------------------------------------------------------------
 
 $RepoRoot  = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -132,19 +135,6 @@ if (-not $TunnelId) {
 $config.runtimeKey = $RuntimeApiKey
 $configJson = $config | ConvertTo-Json -Depth 6
 [IO.File]::WriteAllText($ConfigPath, $configJson + [Environment]::NewLine, (New-Object Text.UTF8Encoding($false)))
-
-Set-Item -Path ("Env:{0}" -f $RuntimeKeyEnv) -Value $RuntimeApiKey
-$env:CONTROL_PLANE_TUNNEL_ID = $TunnelId
-$env:OPENAI_ORGANIZATION = $OrganizationId
-# Keep the runtime settings available to future double-click launches.
-# These values are stored in the current Windows user's environment, not in
-# the repository files.
-[Environment]::SetEnvironmentVariable($RuntimeKeyEnv, $RuntimeApiKey, "User")
-[Environment]::SetEnvironmentVariable("CONTROL_PLANE_TUNNEL_ID", $TunnelId, "User")
-[Environment]::SetEnvironmentVariable("OPENAI_ORGANIZATION", $OrganizationId, "User")
-if ($AuthToken) {
-    $env:MCP_AUTH_TOKEN = $AuthToken
-}
 
 Write-Host "Starting MCP server + tunnel in background..."
 & $NodeCmd $Launcher start --background --workspace $AgentWorkspace --mode $AgentMode --policy $AgentPolicy --port $Port --dashboard-port $DashboardPort --tunnel-id $TunnelId --organization-id $OrganizationId --runtime-key-env $RuntimeKeyEnv --tunnel-bin $TunnelExe --profile $ProfileName --profile-dir $ProfileDir
