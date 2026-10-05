@@ -1,0 +1,31 @@
+{
+  "name": "local-coding-agent",
+  "version": "5.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local Coding Agent Community Edition MCP server for controlled workspace file and command access.",
+  "author": "Long Nguyễn",
+  "license": "AGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LongNgn204/local-coding-agent.git"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "test:agent": "node test-agent.mjs",
+    "test:security": "node test-security.mjs",
+    "test:security:baseline": "node security-test.mjs",
+    "test:hardening": "node test-hardening.mjs",
+    "test:pro": "node test-pro.mjs",
+    "test:agents": "node --test test-agents.mjs",
+    "test:permissions": "node --test permission-resolver.test.mjs permission-preview.test.mjs ../scripts/permission-cli.test.mjs",
+    "test:system-power": "node --test system-power.test.mjs system-power-mcp.test.mjs",
+    "test:browser-preview": "node test-browser-preview.mjs",
+    "test:context": "node --test context-memory.test.mjs",
+    "eval": "node ../evals/run.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "zod": "^3.25.76"
+  }
+}

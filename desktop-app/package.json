@@ -1,0 +1,26 @@
+{
+  "name": "local-codex-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local Codex Studio — Electron GUI that runs coding tasks locally through the OpenAI Codex CLI, reusing this repo's tested MCP backend.",
+  "author": "Long Nguyễn",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "main": "main/main.mjs",
+  "scripts": {
+    "dev": "node dev.mjs",
+    "build": "tsc --noEmit && vite build",
+    "start": "electron .",
+    "test": "node --test test/*.test.mjs"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^6.0.3",
+    "electron": "^43.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.1.3"
+  }
+}
