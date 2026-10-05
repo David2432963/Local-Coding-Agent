@@ -7,7 +7,7 @@ clone of Local Coding Agent and want to update safely.
 Please update my Local Coding Agent installation safely.
 
 Repository:
-https://github.com/LongNgn204/local-coding-agent
+https://github.com/David2432963/Local-Coding-Agent
 
 Goal:
 Update my local clone to the latest version, preserve my local config/secrets
@@ -79,7 +79,7 @@ Steps:
 Update Local Coding Agent for me.
 
 Repo:
-https://github.com/LongNgn204/local-coding-agent
+https://github.com/David2432963/Local-Coding-Agent
 
 Please:
 1. Check git status and ask before overwriting local changes.

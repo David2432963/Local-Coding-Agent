@@ -24,7 +24,7 @@ Use this when preparing a new Local Coding Agent version.
    - `server/package-lock.json`
    - `tray-app/LocalCodingAgentTray.csproj`
    - tests that assert version
-   - `CHANGELOG.md`
+   - release notes drafted from the changes since the previous tag
 3. Run:
    - `npm run test:agent`
    - `npm run test:pro`

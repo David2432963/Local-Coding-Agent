@@ -11,7 +11,7 @@ is running.
 Please install Local Coding Agent on my machine.
 
 Repository:
-https://github.com/LongNgn204/local-coding-agent
+https://github.com/David2432963/Local-Coding-Agent
 
 Goal:
 Clone the repo, install it, configure a workspace, start the MCP server, and
@@ -27,7 +27,7 @@ Rules:
 
 Steps:
 1. Check Node.js version is >= 18.
-2. Clone https://github.com/LongNgn204/local-coding-agent if it is not already cloned.
+2. Clone https://github.com/David2432963/Local-Coding-Agent if it is not already cloned.
 3. Enter the repo directory.
 4. Install with:
    - Windows: scripts\lca.cmd install
@@ -57,7 +57,7 @@ OpenAI secure tunnel.
 Clone and run Local Coding Agent in server-only mode.
 
 Repository:
-https://github.com/LongNgn204/local-coding-agent
+https://github.com/David2432963/Local-Coding-Agent
 
 Rules:
 - Do not install system dependencies without asking me first.
@@ -88,7 +88,7 @@ Steps:
 Set up Local Coding Agent as a local MCP coding workspace.
 
 Repository:
-https://github.com/LongNgn204/local-coding-agent
+https://github.com/David2432963/Local-Coding-Agent
 
 Use the universal CLI:
 - node scripts/local-coding-agent.mjs install

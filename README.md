@@ -8,11 +8,9 @@
 Let an AI agent read files, edit code, run checks, inspect git, and show live health metrics from a local dashboard.</p>
 
 <p>
-  <a href="https://github.com/David2432963/Local-Coding-Agent/releases"><img src="https://img.shields.io/github/v/release/David2432963/Local-Coding-Agent?color=2dd4bf&label=release" alt="release" /></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-60a5fa" alt="platforms" />
   <img src="https://img.shields.io/badge/MCP-server-a78bfa" alt="mcp" />
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-blue" alt="license" /></a>
-  <img src="https://img.shields.io/badge/edition-Community-2dd4bf" alt="Community Edition" />
   <img src="https://img.shields.io/badge/node-%E2%89%A518-339933?logo=node.js&logoColor=white" alt="node" />
   <a href="https://github.com/David2432963/Local-Coding-Agent/stargazers"><img src="https://img.shields.io/github/stars/David2432963/Local-Coding-Agent?style=social" alt="stars" /></a>
 </p>
@@ -24,9 +22,6 @@ Let an AI agent read files, edit code, run checks, inspect git, and show live he
   <img alt="ChatGPT Web" src="https://img.shields.io/badge/ChatGPT%20Web-MCP%20connector-10a37f?logo=openai&logoColor=white" />
 </p>
 
-<sub>Compatible with any MCP client. Not affiliated with Anthropic, OpenAI, GitHub, or Microsoft.</sub>
-
-<sub>The Community Edition code is open source under AGPL. The project name and brand assets are governed separately by the <a href="TRADEMARKS.md">Trademark Policy</a>.</sub>
 
 <p><b>English</b> | <a href="#tiếng-việt">Tiếng Việt</a></p>
 
@@ -35,9 +30,8 @@ Let an AI agent read files, edit code, run checks, inspect git, and show live he
 > This tool can run commands on your computer. Read [SECURITY.md](SECURITY.md)
 > before using it. It is not an OS sandbox; only connect workspaces you trust.
 
-> **Latest stable release: v5.0.0.** The complete v5 feature set is now the
-> official release channel and is enabled by default. It includes the v4.4.3
-> core improvements, Compact & Resume, multi-root permissions, the redesigned
+> **Current codebase: v5.0.0.** The repository includes the v5 feature set,
+> enabled by default, with Compact & Resume, multi-root permissions, the redesigned
 > dashboard, tunnel recovery, Chrome Companion, and optional system power tools.
 
 ### What's New In v5.0.0
@@ -57,11 +51,10 @@ Let an AI agent read files, edit code, run checks, inspect git, and show live he
 - Local-first anti-lag reports, task agents, customer setup/update/diagnostic
   prompts, and compact MCP output defaults.
 
-**Tiếng Việt:** Bản `v5.0.0` là bản phát hành chính thức với đầy đủ tính năng v5:
-profile nhiều path và phân quyền theo từng path, dashboard mới, tray/tunnel tự
-phục hồi, Chrome Companion cho một tab được người dùng arm, báo cáo anti-lag và
-tùy chọn tắt Windows bằng prompt rõ ràng. Tính năng tắt máy mặc định **tắt**;
-chỉ hoạt động sau khi người dùng bật công tắc trong tray.
+**Tiếng Việt:** Mã nguồn hiện theo bộ tính năng v5.0.0, gồm profile nhiều
+workspace, dashboard mới, tray/tunnel tự phục hồi, Chrome Companion, báo cáo
+anti-lag và công cụ tắt Windows tùy chọn. Tính năng tắt máy mặc định bị vô
+hiệu hóa; chỉ hoạt động sau khi người dùng bật trong tray.
 
 Existing customers can update safely with `scripts\lca.cmd update` on Windows
 or `bash scripts/lca update` on macOS/Linux, then restart the tray app/server.
@@ -251,12 +244,7 @@ The Windows tray app is a GUI supervisor for the same local server and tunnel.
 It can start/stop the server, save tunnel settings, copy the MCP URL, open the
 dashboard, and store the Runtime API key encrypted with Windows DPAPI.
 
-Download the self-contained `.exe` from
-[Releases](https://github.com/David2432963/Local-Coding-Agent/releases), or build
-it yourself:
-
-Direct Windows x64 download for the latest stable release:
-[LocalCodingAgentTray-5.0.0-win-x64.exe](https://github.com/David2432963/Local-Coding-Agent/releases/download/v5.0.0/LocalCodingAgentTray-5.0.0-win-x64.exe).
+Build the tray app from this checkout:
 
 ```powershell
 cd tray-app
@@ -443,18 +431,9 @@ cd tray-app
 dotnet build LocalCodingAgentTray.csproj -c Release
 ```
 
-### License And Trademark
+### License
 
-The Local Coding Agent Community Edition code is licensed under
-[AGPL-3.0-or-later](LICENSE). Copyright © 2026 Long Nguyễn.
-
-The code license does not grant permission to present a fork, service, or
-modified binary as an official Local Coding Agent release. See
-[NOTICE.md](NOTICE.md), [TRADEMARKS.md](TRADEMARKS.md), and
-[BRAND-GUIDELINES.md](BRAND-GUIDELINES.md). The owner can use the
-[trademark registration checklist](docs/TRADEMARK-REGISTRATION-CHECKLIST.md) to
-prepare a formal filing. Local Coding Agent is an independent project and is not
-an official product of OpenAI or any other MCP client vendor.
+This project is licensed under [AGPL-3.0-or-later](LICENSE).
 
 ---
 
@@ -573,12 +552,7 @@ Windows tray app là GUI supervisor cho cùng local server và tunnel. Nó có t
 start/stop server, lưu tunnel settings, copy MCP URL, mở dashboard và lưu Runtime
 API key bằng Windows DPAPI.
 
-Tải file `.exe` self-contained từ
-[Releases](https://github.com/David2432963/Local-Coding-Agent/releases), hoặc tự
-build:
-
-Tải trực tiếp bản Windows x64 mới nhất:
-[LocalCodingAgentTray-5.0.0-win-x64.exe](https://github.com/David2432963/Local-Coding-Agent/releases/download/v5.0.0/LocalCodingAgentTray-5.0.0-win-x64.exe).
+Build tray app từ bản checkout này:
 
 ```powershell
 cd tray-app
@@ -756,15 +730,6 @@ cd tray-app
 dotnet build LocalCodingAgentTray.csproj -c Release
 ```
 
-### Giấy Phép Và Nhãn Hiệu
+### Giấy phép
 
-Mã nguồn Local Coding Agent Community Edition được phát hành theo
-[AGPL-3.0-or-later](LICENSE). Bản quyền © 2026 Long Nguyễn.
-
-Giấy phép code không cấp quyền giới thiệu một fork, dịch vụ hoặc binary đã sửa
-đổi như bản phát hành Local Coding Agent chính thức. Xem
-[NOTICE.md](NOTICE.md), [TRADEMARKS.md](TRADEMARKS.md) và
-[BRAND-GUIDELINES.md](BRAND-GUIDELINES.md). Chủ dự án có thể dùng
-[checklist đăng ký nhãn hiệu](docs/TRADEMARK-REGISTRATION-CHECKLIST.md) để chuẩn
-bị hồ sơ chính thức. Local Coding Agent là dự án độc lập, không phải sản phẩm
-chính thức của OpenAI hoặc bất kỳ nhà cung cấp MCP client nào khác.
+Dự án được cấp phép theo [AGPL-3.0-or-later](LICENSE).

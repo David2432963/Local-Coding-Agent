@@ -344,7 +344,7 @@ function updatePayload({
     buildNumber,
     minAppVersion,
     publishedAt: "2026-07-02T00:00:00.000Z",
-    releaseNotesUrl: "https://github.com/LongNgn204/local-coding-agent/releases",
+    releaseNotesUrl: "https://github.com/David2432963/Local-Coding-Agent/releases",
     artifacts: [{
       platform: "win32",
       arch: "x64",

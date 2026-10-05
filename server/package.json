@@ -8,7 +8,7 @@
   "license": "AGPL-3.0-or-later",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LongNgn204/local-coding-agent.git"
+    "url": "https://github.com/David2432963/Local-Coding-Agent.git"
   },
   "scripts": {
     "start": "node server.mjs",

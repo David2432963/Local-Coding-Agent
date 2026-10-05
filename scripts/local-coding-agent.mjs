@@ -25,7 +25,7 @@ const TUNNEL_OUT_LOG_PATH = join(dirname(CONFIG_PATH), "tunnel.out.log");
 const TUNNEL_ERR_LOG_PATH = join(dirname(CONFIG_PATH), "tunnel.err.log");
 const DEFAULT_PERMISSION_PROFILE_PATH = join(dirname(CONFIG_PATH), "permission-profiles.json");
 const SETUP_WIZARD_REPORT = join(REPO_ROOT, "setup-wizard-report.txt");
-const REPO_URL = "https://github.com/LongNgn204/local-coding-agent";
+const REPO_URL = "https://github.com/David2432963/Local-Coding-Agent";
 const RELEASE_VERSION = "5.0.0";
 
 const DEFAULTS = {

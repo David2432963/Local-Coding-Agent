@@ -3131,7 +3131,7 @@ function customerAiPrompt(kind) {
   const workspace = PRIMARY_ROOT;
   const dashboard = `http://${DASHBOARD_HOST}:${DASHBOARD_PORT}/ui`;
   const mcp = `http://${HOST}:${PORT}/mcp`;
-  const repo = "https://github.com/LongNgn204/local-coding-agent";
+  const repo = "https://github.com/David2432963/Local-Coding-Agent";
   const rules = [
     "- Read AGENTS.md first and follow it exactly.",
     "- Do not install system dependencies without asking first.",
@@ -3523,7 +3523,7 @@ function dashApiClearMetrics(res) {
 }
 
 function customerPrompt(kind = "setup") {
-  const repo = "https://github.com/LongNgn204/local-coding-agent";
+  const repo = "https://github.com/David2432963/Local-Coding-Agent";
   if (kind === "compact") {
     return [
       "This ChatGPT Web conversation is getting long. Preserve the work without copying the full transcript.",
