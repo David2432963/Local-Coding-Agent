@@ -1,8 +1,9 @@
 # Local Coding Agent
 
-A local MCP server that lets an AI coding client work with a folder on your
-computer. It includes a local dashboard and can connect to ChatGPT Web through
-the OpenAI tunnel client.
+A local MCP server for connecting an AI coding client to a folder on your
+computer. It provides tools for working with that folder, a local dashboard to
+check the server, and an optional Windows tray app. To connect ChatGPT Web, you
+also need the OpenAI tunnel client, which is obtained separately.
 
 > **Security:** The agent can read and change files in the configured workspace
 > and may run commands. Only connect workspaces you trust. This is not an
