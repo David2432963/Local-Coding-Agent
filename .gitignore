@@ -8,6 +8,7 @@
 config.json
 permission-profiles.json
 /setup.json
+/processes.json
 
 # ---- Proprietary binaries (do NOT redistribute) ----
 tools/
