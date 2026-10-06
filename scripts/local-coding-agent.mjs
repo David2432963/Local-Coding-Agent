@@ -56,8 +56,8 @@ const DEFAULTS = {
 const SETUP_TEMPLATE = {
   _comments: {
     workspace: "Bắt buộc: đường dẫn tuyệt đối đến thư mục agent được phép đọc/ghi. Ví dụ: C:/Users/Admin/Projects/MyApp.",
-    mode: "safe = giới hạn lệnh rủi ro bằng danh sách chặn bảo thủ; full = ít chặn lệnh hơn. Đây không phải sandbox của hệ điều hành. Nên dùng safe.",
-    policy: "strict = chỉ đọc; balanced = cần bạn duyệt một lần cho thao tác rủi ro như xóa, cài đặt, mạng hoặc sửa Git; full = không yêu cầu duyệt theo policy. Nên dùng balanced.",
+    mode: "safe: chặn thêm một số lệnh rủi ro theo danh sách bảo thủ; full: cho phép nhiều lệnh hơn. Cài đặt này chỉ ảnh hưởng lệnh, không phải sandbox của Windows. Khuyên dùng safe.",
+    policy: "strict: chỉ đọc; chặn sửa file, cài đặt, truy cập mạng và thay đổi Git. balanced: cho phép sửa/kiểm thử; cần bạn duyệt thao tác rủi ro như xóa file, cài gói, truy cập mạng hoặc thay đổi Git. full: không yêu cầu duyệt theo policy. Khuyên dùng balanced.",
     tunnelId: "Tunnel ID do OpenAI cấp trong phần thiết lập tunnel. Ví dụ định dạng: tunnel_... .",
     runtimeKey: "Runtime API key dùng để kết nối tunnel. File JSON này không mã hóa key; không chia sẻ hoặc commit file."
   },
