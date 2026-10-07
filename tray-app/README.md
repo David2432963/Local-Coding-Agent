@@ -37,7 +37,7 @@ Full documentation and security model: see the [repository README](../README.md)
   https://aka.ms/dotnet/download
 - **Run after self-contained publish:** nothing extra.
 - Node.js for the MCP server.
-- `tunnel-client.exe`, obtained separately from OpenAI.
+- `tunnel-client.exe` is included at `../tools/tunnel-client.exe` for Windows.
 
 ## Build / run
 

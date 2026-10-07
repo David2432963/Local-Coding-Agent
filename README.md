@@ -3,7 +3,8 @@
 A local MCP server for connecting an AI coding client to a folder on your
 computer. It provides tools for working with that folder, a local dashboard to
 check the server, and an optional Windows tray app. To connect ChatGPT Web, you
-also need the OpenAI tunnel client, which is obtained separately.
+also need an OpenAI tunnel client. The approved Windows binary is included in
+this repository.
 
 > **Security:** The agent can read and change files in the configured workspace
 > and may run commands. Only connect workspaces you trust. This is not an
@@ -12,9 +13,9 @@ also need the OpenAI tunnel client, which is obtained separately.
 ## Requirements
 
 - Node.js 18 or newer.
-- The OpenAI tunnel client, obtained separately. It is not included in this
-  repository. On Windows, place it at `tools/tunnel-client.exe`; on macOS/Linux,
-  place it at `tools/tunnel-client`.
+- Windows: the approved OpenAI tunnel client is included at
+  `tools/tunnel-client.exe`. macOS/Linux users must obtain their platform client
+  and place it at `tools/tunnel-client`.
 - .NET 10 SDK only if you want to build the optional Windows tray app.
 
 ## Quick start
@@ -53,8 +54,9 @@ Stop them with:
 bash scripts/lca stop
 ```
 
-The installers create `setup.json` if it is missing and install the server
-dependencies. They do not install Node.js or download the tunnel client.
+The installers validate the checked-in `setup.json` and install the server
+dependencies. They do not install Node.js. The Windows client is included;
+macOS/Linux users must provide their platform binary.
 
 ## Configure `setup.json`
 
@@ -67,16 +69,18 @@ Set these values before starting:
 | `policy` | `balanced` (recommended), `strict`, or `full`. |
 | `tunnelId` | The Tunnel ID from your OpenAI tunnel setup. |
 | `organizationId` | Optional. Add it only if your tunnel setup requires it. |
+| `tunnelBin` | Optional path override. Leave blank for the default client under `tools/`. |
 | `runtimeKey` | Your Runtime API key for the tunnel. |
 
 The JSON has a `_comments` section with these notes. JSON does not support
 `//` comments, so keep notes inside `_comments` to avoid making the file invalid.
-The local `setup.json` is ignored by Git because it can contain credentials.
-Do not commit or share it. A fresh clone creates a new file when you run the
-installer; copy settings to another computer privately if needed.
+`setup.json` is tracked as a safe template.
+Keep `runtimeKey` and private values blank in commits. Local edits appear in
+Git status; never stage or commit real credentials.
 
-The tunnel client must be placed in the `tools/` path above. For a standard
-setup, no custom tunnel executable path is needed in `setup.json`.
+On Windows, the included client is at `tools/tunnel-client.exe`. On macOS/Linux,
+place it at `tools/tunnel-client`.
+Use the optional `tunnelBin` setting if the client is elsewhere.
 
 ## Start and connect
 
@@ -102,7 +106,7 @@ and add a custom MCP connector using the tunnel URL shown by the launcher.
 |---|---|
 | `node` is not found | Install Node.js 18+ and reopen the terminal. |
 | Server dependencies are missing | Run `install.bat` or `bash install.sh`. |
-| Tunnel client is not found | Put the client in the correct `tools/` path above. |
+| Tunnel client is not found | On Windows, check `tools/tunnel-client.exe` or `tunnelBin`; on macOS/Linux, provide the platform binary. |
 | Runtime key or Tunnel ID is missing | Check `runtimeKey` and `tunnelId` in `setup.json`. |
 | Dashboard does not open | Check `http://127.0.0.1:8787/healthz` and review the server logs. |
 | Organization is required | Add `organizationId` to `setup.json` and enter the organization that owns the tunnel. |
@@ -138,8 +142,8 @@ nối ChatGPT Web qua tunnel client của OpenAI.
 ### Yêu cầu
 
 - Node.js 18 trở lên.
-- OpenAI tunnel client, bạn cần tự lấy vì repo không kèm file này. Windows đặt
-  tại `tools/tunnel-client.exe`; macOS/Linux đặt tại `tools/tunnel-client`.
+- Windows: OpenAI tunnel client đã được đưa vào repo tại
+  `tools/tunnel-client.exe`. macOS/Linux tự cung cấp binary ở `tools/tunnel-client`.
 - Chỉ cần .NET 10 SDK nếu muốn build Windows tray app tùy chọn.
 
 ### Cài và chạy trên Windows
@@ -176,8 +180,9 @@ Dừng bằng:
 bash scripts/lca stop
 ```
 
-Installer tạo `setup.json` nếu chưa có và cài dependencies cho server. Nó
-không cài Node.js và không tải tunnel client.
+Installer kiểm tra `setup.json` có sẵn trong repo rồi cài dependencies cho server.
+Nó không tự tạo hoặc ghi đè cấu hình, cũng không cài Node.js. Repo có tunnel
+client cho Windows; macOS/Linux cần tự cung cấp binary phù hợp.
 
 ### Cấu hình `setup.json`
 
@@ -190,16 +195,18 @@ không cài Node.js và không tải tunnel client.
 | `policy` | `balanced` (khuyên dùng), `strict` hoặc `full`. |
 | `tunnelId` | Tunnel ID trong phần thiết lập OpenAI tunnel. |
 | `organizationId` | Không bắt buộc. Chỉ thêm nếu tunnel yêu cầu. |
+| `tunnelBin` | Đường dẫn tùy chọn. Để trống để dùng client mặc định trong `tools/`. |
 | `runtimeKey` | Runtime API key dùng cho tunnel. |
 
 Phần `_comments` trong JSON có ghi chú cho từng trường. JSON không hỗ trợ
 comment dạng `//`; hãy giữ ghi chú trong `_comments` để file không bị lỗi.
-`setup.json` bị Git bỏ qua vì có thể chứa thông tin bí mật. Không commit hoặc
-chia sẻ file này. Khi clone repo trên máy mới, chạy installer để tạo file rồi
-chuyển cấu hình sang máy đó bằng cách riêng tư.
+`setup.json` được Git theo dõi ở trạng thái mẫu an toàn. Để trống `runtimeKey`
+và các giá trị riêng tư trong commit. Chỉnh sửa local sẽ hiện trong Git status;
+không stage hoặc commit credential thật.
 
-Tunnel client phải được đặt đúng đường dẫn trong `tools/` như phía trên. Với
-cấu hình thông thường, không cần khai báo đường dẫn riêng trong `setup.json`.
+Windows đã có client tại `tools/tunnel-client.exe`. macOS/Linux cần đặt binary
+phù hợp tại `tools/tunnel-client`.
+Có thể dùng `tunnelBin` nếu client nằm ở đường dẫn khác.
 
 ### Kiểm tra và kết nối ChatGPT
 
@@ -225,7 +232,7 @@ custom MCP connector bằng tunnel URL mà launcher hiển thị.
 |---|---|
 | Không tìm thấy `node` | Cài Node.js 18+ rồi mở lại terminal. |
 | Thiếu dependencies server | Chạy `install.bat` hoặc `bash install.sh`. |
-| Không tìm thấy tunnel client | Đặt client đúng đường dẫn trong `tools/`. |
+| Không tìm thấy tunnel client | Windows: kiểm tra `tools/tunnel-client.exe` hoặc `tunnelBin`; macOS/Linux cần cung cấp binary phù hợp. |
 | Thiếu Runtime key hoặc Tunnel ID | Kiểm tra `runtimeKey` và `tunnelId` trong `setup.json`. |
 | Dashboard không mở | Kiểm tra `http://127.0.0.1:8787/healthz` và log server. |
 | Tunnel yêu cầu Organization ID | Thêm `organizationId` vào `setup.json` và nhập đúng organization sở hữu tunnel. |

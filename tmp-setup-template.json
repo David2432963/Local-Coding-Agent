@@ -1,0 +1,18 @@
+{
+  "_comments": {
+    "workspace": "Bắt buộc: đường dẫn tuyệt đối đến thư mục agent được phép đọc/ghi. Ví dụ: C:/Users/Admin/Projects/MyApp.",
+    "mode": "safe: chặn thêm một số lệnh rủi ro theo danh sách bảo thủ; full: cho phép nhiều lệnh hơn. Đây không phải sandbox của Windows. Khuyên dùng safe.",
+    "policy": "strict: chỉ đọc; balanced: cho phép sửa/kiểm thử và yêu cầu duyệt thao tác rủi ro; full: không yêu cầu duyệt theo policy. Khuyên dùng balanced.",
+    "tunnelId": "Tunnel ID do OpenAI cấp trong thiết lập tunnel.",
+    "organizationId": "Không bắt buộc; chỉ điền nếu tunnel yêu cầu.",
+    "tunnelBin": "Để trống để dùng client trong tools/; chỉ điền nếu client nằm ở đường dẫn khác.",
+    "runtimeKey": "Runtime API key dùng để kết nối tunnel. Để trống trong bản commit; không commit giá trị key thật."
+  },
+  "workspace": "",
+  "mode": "safe",
+  "policy": "balanced",
+  "tunnelId": "",
+  "organizationId": "",
+  "tunnelBin": "",
+  "runtimeKey": ""
+}

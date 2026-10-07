@@ -53,21 +53,7 @@ const DEFAULTS = {
   noTunnel: false
 };
 
-const SETUP_TEMPLATE = {
-  _comments: {
-    workspace: "Bắt buộc: đường dẫn tuyệt đối đến thư mục agent được phép đọc/ghi. Ví dụ: C:/Users/Admin/Projects/MyApp.",
-    mode: "safe: chặn thêm một số lệnh rủi ro theo danh sách bảo thủ; full: cho phép nhiều lệnh hơn. Cài đặt này chỉ ảnh hưởng lệnh, không phải sandbox của Windows. Khuyên dùng safe.",
-    policy: "strict: chỉ đọc; chặn sửa file, cài đặt, truy cập mạng và thay đổi Git. balanced: cho phép sửa/kiểm thử; cần bạn duyệt thao tác rủi ro như xóa file, cài gói, truy cập mạng hoặc thay đổi Git. full: không yêu cầu duyệt theo policy. Khuyên dùng balanced.",
-    tunnelId: "Tunnel ID do OpenAI cấp trong phần thiết lập tunnel. Ví dụ định dạng: tunnel_... .",
-    runtimeKey: "Runtime API key dùng để kết nối tunnel. File JSON này không mã hóa key; không chia sẻ hoặc commit file."
-  },
-  workspace: "",
-  mode: "safe",
-  policy: "balanced",
-  tunnelId: "",
-  organizationId: "",
-  runtimeKey: ""
-};
+
 
 function defaultConfigPath() {
   return join(REPO_ROOT, "setup.json");
@@ -543,24 +529,16 @@ function stripRuntimeFields(cfg) {
 
 async function installDeps(opts) {
   if (!existsSync(CONFIG_PATH)) {
-    mkdirSync(dirname(CONFIG_PATH), { recursive: true });
-    writeFileSync(CONFIG_PATH, `${JSON.stringify(SETUP_TEMPLATE, null, 2)}\n`, "utf8");
-    console.log(`Created project setup file: ${CONFIG_PATH}`);
-  } else {
-    let config;
-    try {
-      config = JSON.parse(readFileSync(CONFIG_PATH, "utf8"));
-    } catch {
-      throw new Error(`Invalid JSON in ${CONFIG_PATH}; fix the file before installing.`);
-    }
-    if (!config || typeof config !== "object" || Array.isArray(config)) {
-      throw new Error(`Expected a JSON object in ${CONFIG_PATH}.`);
-    }
-    if (!config._comments) {
-      config._comments = SETUP_TEMPLATE._comments;
-      writeFileSync(CONFIG_PATH, `${JSON.stringify(config, null, 2)}\n`, "utf8");
-      console.log(`Added setup instructions to: ${CONFIG_PATH}`);
-    }
+    throw new Error(`Project setup file not found: ${CONFIG_PATH}. Restore setup.json from the repository.`);
+  }
+  let config;
+  try {
+    config = JSON.parse(readFileSync(CONFIG_PATH, "utf8"));
+  } catch {
+    throw new Error(`Invalid JSON in ${CONFIG_PATH}; fix the file before installing.`);
+  }
+  if (!config || typeof config !== "object" || Array.isArray(config)) {
+    throw new Error(`Expected a JSON object in ${CONFIG_PATH}.`);
   }
   mkdirSync(join(REPO_ROOT, "tools"), { recursive: true });
 
@@ -837,8 +815,8 @@ function customerPrompt(kind, opts = {}) {
   const commonRules = [
     "- Read AGENTS.md first and follow it exactly.",
     "- Do not install system dependencies without asking me first.",
-    "- Do not download, commit, or redistribute tunnel-client; I will provide it if needed.",
-    "- Do not commit secrets, API keys, tunnel IDs, local config, generated profiles, reports, or server/data.",
+    "- Use the repository-approved Windows tunnel client at tools/tunnel-client.exe; do not replace it or add other tunnel-client binaries without explicit authorization.",
+    "- Keep real secrets and local paths out of commits; keep the committed setup.json values blank. Do not commit generated profiles, reports, or server/data.",
     "- Default to AGENT_MODE=safe and AGENT_POLICY=balanced.",
     "- Prefer the universal CLI before manual commands.",
     "- If output is long, summarize it and save/report the file path instead of pasting everything.",

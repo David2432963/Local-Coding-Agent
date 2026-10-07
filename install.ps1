@@ -4,48 +4,34 @@
 
 $ErrorActionPreference = "Stop"
 
-# Install dependencies and prepare the single project-local setup.json.
+# Install server dependencies using the checked-in setup.json.
 # Edit setup.json yourself, then use start-server.bat to run the agent.
 $RepoRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $Launcher = Join-Path $RepoRoot "scripts\local-coding-agent.mjs"
 $ConfigPath = Join-Path $RepoRoot "setup.json"
-$LegacyConfigPath = Join-Path $env:APPDATA "LocalCodingAgent\cli-config.json"
 $Node = Get-Command node.exe -ErrorAction SilentlyContinue
 
 if (-not $Node) {
     throw "Node.js 18 or newer is required and must be available on PATH."
 }
+$NodeVersion = (& $Node.Source --version).Trim()
+if ($LASTEXITCODE -ne 0 -or $NodeVersion -notmatch '^v?(\d+)\.') {
+    throw "Could not determine the installed Node.js version. Install Node.js 18 or newer."
+}
+if ([int]$Matches[1] -lt 18) {
+    throw "Node.js 18 or newer is required. Found $NodeVersion."
+}
 if (-not (Test-Path -LiteralPath $Launcher)) {
     throw "Local Coding Agent launcher not found: $Launcher"
+}
+if (-not (Test-Path -LiteralPath $ConfigPath)) {
+    throw "Project setup file not found: $ConfigPath. Restore setup.json from the repository."
 }
 
 $env:LCA_CONFIG_PATH = $ConfigPath
 & $Node.Source $Launcher install
 if ($LASTEXITCODE -ne 0) {
     throw "Local Coding Agent install failed with exit code $LASTEXITCODE."
-}
-
-# Move any saved legacy values into empty fields without deleting the source
-# config or replacing values already edited in setup.json.
-if (Test-Path -LiteralPath $LegacyConfigPath) {
-    $settings = Get-Content -LiteralPath $ConfigPath -Raw | ConvertFrom-Json
-    $legacy = Get-Content -LiteralPath $LegacyConfigPath -Raw | ConvertFrom-Json
-    $changed = $false
-    foreach ($property in $legacy.PSObject.Properties) {
-        $current = $settings.PSObject.Properties[$property.Name]
-        $isEmpty = $current -and ($null -eq $current.Value -or
-            ($current.Value -is [string] -and [string]::IsNullOrWhiteSpace($current.Value))
-        )
-        if ($isEmpty) {
-            $current.Value = $property.Value
-            $changed = $true
-        }
-    }
-    if ($changed) {
-        $json = $settings | ConvertTo-Json -Depth 12
-        [IO.File]::WriteAllText($ConfigPath, $json + [Environment]::NewLine, (New-Object Text.UTF8Encoding($false)))
-        Write-Host "Copied saved values into setup.json; the old config was left untouched."
-    }
 }
 
 Write-Host ""

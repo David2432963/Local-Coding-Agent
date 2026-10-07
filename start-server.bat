@@ -18,7 +18,7 @@ if not exist "%CLI%" (
 if not exist "%LCA_CONFIG_PATH%" (
   echo ERROR: Project setup file was not found:
   echo        %LCA_CONFIG_PATH%
-  echo Run install.bat once to create it.
+  echo Restore setup.json from the repository; install.bat does not create it.
   pause
   exit /b 1
 )

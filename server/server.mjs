@@ -3135,8 +3135,8 @@ function customerAiPrompt(kind) {
   const rules = [
     "- Read AGENTS.md first and follow it exactly.",
     "- Do not install system dependencies without asking first.",
-    "- Do not download, commit, or redistribute tunnel-client; the user provides it.",
-    "- Do not commit secrets, API keys, tunnel IDs, local config, generated profiles, reports, or server/data.",
+    "- Use the repository-approved Windows client at tools/tunnel-client.exe; do not replace or download another binary. macOS/Linux users provide their platform client.",
+    "- Keep credentials blank in committed setup.json; do not commit real keys, tunnel IDs, generated profiles, reports, or server/data.",
     "- Default to AGENT_MODE=safe and AGENT_POLICY=balanced.",
     "- Prefer the universal CLI before manual commands.",
     "- Keep long logs local and summarize them instead of pasting everything.",

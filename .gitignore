@@ -7,15 +7,18 @@
 *.pem
 config.json
 permission-profiles.json
-/setup.json
 /processes.json
 
-# ---- Proprietary binaries (do NOT redistribute) ----
+# ---- Proprietary binaries ----
 tools/
 **/tunnel-client*.exe
 **/tunnel-client*.zip
 **/cloudflared*.exe
 *.exe
+# The approved Windows tunnel client is intentionally distributed with this repo.
+!tools/
+tools/*
+!tools/tunnel-client.exe
 
 # ---- Diagnostic reports (redacted, but generated per-machine) ----
 support-report.txt

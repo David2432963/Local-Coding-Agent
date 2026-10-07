@@ -19,8 +19,8 @@ verify the dashboard.
 
 Rules:
 - Do not install system dependencies without asking me first.
-- Do not download, commit, or redistribute tunnel-client. I will provide it if needed.
-- Do not commit secrets, API keys, tunnel IDs, local config, or generated profiles.
+- Use the repository-approved Windows client at tools/tunnel-client.exe; do not replace or download another binary. macOS/Linux users provide their platform client.
+- Keep credentials blank in committed setup.json; do not commit real keys, tunnel IDs, generated profiles, or local data.
 - Default to mode=safe and policy=balanced.
 - Use the universal CLI first. Use the Windows tray app only if I ask for GUI.
 - If anything fails, show the exact error and the next command to fix it.

@@ -11,9 +11,11 @@ as a coding agent on the user's machine, plus an optional **Windows tray app**
 
 ## Prerequisites (check first; do not auto-install without asking)
 - **Node.js ≥ 18** — `node -v`. If missing, point the user to https://nodejs.org.
-- **The OpenAI tunnel client is NOT in this repo** (proprietary). The user must
-  obtain it and place it at `tools/tunnel-client.exe` (Windows) or
-  `tools/tunnel-client` (macOS/Linux). Never download/commit it.
+- **OpenAI tunnel client (Windows):** the approved redistribution copy is included and tracked at `tools/tunnel-client.exe`.
+  macOS/Linux users must obtain their platform client separately and place it at
+  `tools/tunnel-client`; do not download or commit the macOS/Linux client. Do not
+  replace the approved Windows binary or add other tunnel-client binaries without
+  explicit maintainer authorization.
 - (Windows tray app only) **.NET 10 SDK** — `dotnet --version`.
 - Optional: **ripgrep** (`rg`) makes search faster; the server auto-detects it.
 
@@ -21,19 +23,18 @@ as a coding agent on the user's machine, plus an optional **Windows tray app**
 - Windows: `pwsh -File install.ps1`  (or `powershell -ExecutionPolicy Bypass -File install.ps1`)
 - macOS/Linux: `bash install.sh`
 
-This installs dependencies in `server/`, creates `tools/`, and initializes the
-ignored project-root `setup.json` with inline option notes when needed. It does
-NOT need sudo.
+This installs dependencies in `server/` and validates the project-root
+`setup.json`, which is included as a safe template. It does NOT need sudo.
 
 ## Run
 1. Decide the **workspace** = the folder the agent may read/write. Confirm it
    with the user.
 2. Start the server (pick one):
    - One-click flow: run `install.bat` (Windows) or `bash install.sh`
-     (macOS/Linux), edit the ignored project-root `setup.json`, then start with
+     (macOS/Linux), edit the project-root `setup.json`, then start with
      `start-server.bat` (Windows) or `bash scripts/lca start` (macOS/Linux).
      The setup file contains workspace, mode, policy, tunnel, and key settings.
-     Never commit it; it can contain credentials.
+     Keep credentials blank in commits; never commit real keys or local values.
    - Foreground flow: run `scripts/start-tunnel.ps1` (Windows) or
      `scripts/start-tunnel.sh` (macOS/Linux); both use `setup.json` too.
    - Server only (no tunnel), for a quick check:
